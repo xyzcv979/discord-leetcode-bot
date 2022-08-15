@@ -8,6 +8,9 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client() # connection to discord
 
+GENERAL_CHANNEL = 1007826049347891201
+LEETCODE_CHANNEL = 1008072276396216342
+
 @client.event # registers event
 async def on_ready(): # once bot is online
     print(f'{client.user} connected to Discord!')
@@ -25,7 +28,7 @@ async def on_message(message): # on receiving a message
 
 @client.event
 async def on_member_join(member):
-    channel = client.get_channel(1007826049347891201) # general channel ID
+    channel = client.get_channel(GENERAL_CHANNEL) # general channel ID
     await channel.send(f'Hi {member.name}, welcome to {member.guild.name}')
 
 client.run(TOKEN)
