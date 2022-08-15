@@ -1,5 +1,4 @@
 # bot.py
-from email import message
 import discord
 from dotenv import load_dotenv
 import os
@@ -7,14 +6,14 @@ import os
 # intents = discord.Intents.default()
 # intents.message_content = True
 
-load_dotenv('dev.env')
+load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client() # connection to discord
 
 @client.event # registers event
 async def on_ready(): # once bot is online
-    print(f'We have logged in as {client.user}')
+    print(f'{client.user} connected to Discord!')
 
 @client.event
 async def on_message(message): # on receiving a message
@@ -29,6 +28,7 @@ async def on_message(message): # on receiving a message
 
 @client.event
 async def on_member_join(member):
-    await message.channel.send(f'Hi {member.name}, welcome to {member.guild.name}')
+    channel = client.get_channel(1007826049347891201) # general channel ID
+    await channel.send(f'Hi {member.name}, welcome to {member.guild.name}')
 
 client.run(TOKEN)
