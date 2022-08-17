@@ -2,6 +2,7 @@
 import discord
 from dotenv import load_dotenv
 import os
+from leetcode_requests import get_leetcode_daily
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -25,6 +26,9 @@ async def on_message(message): # on receiving a message
     
     if 'emily' in message.content or 'Emily' in message.content:
         await message.channel.send("Emily is short!")
+
+    if 'QOTD' in message.content:
+        await message.channel.send(get_leetcode_daily())
 
 @client.event
 async def on_member_join(member):
