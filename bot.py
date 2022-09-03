@@ -1,4 +1,5 @@
 # bot.py
+from enum import IntEnum
 import discord
 from dotenv import load_dotenv
 import os
@@ -9,8 +10,9 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-intents = discord.Intents.default()
-intents.members = True
+intents = discord.Intents.all()
+# intents = discord.Intents.default()
+# intents.members = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
