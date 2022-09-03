@@ -9,7 +9,10 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-bot = commands.Bot(command_prefix='!')
+intents = discord.Intents.default()
+intents.members = True
+
+bot = commands.Bot(command_prefix='!', intent=intents)
 
 GENERAL_CHANNEL = 1007826049347891201
 LEETCODE_CHANNEL = 1008072276396216342
@@ -28,7 +31,7 @@ async def on_member_join(member):
     channel = bot.get_channel(GENERAL_CHANNEL) # general channel ID
     await channel.send(f'Hi {member.name}, welcome to {member.guild.name}')
 
-@bot.command(name='daily', help='Responds with daily leetcode problem')
+@bot.command(name='daily', help='Responds with the daily leetcode problem')
 async def leetcode_daily(ctx): #ctx = context which holds channel/guild info
     await ctx.send(get_leetcode_daily())
 
