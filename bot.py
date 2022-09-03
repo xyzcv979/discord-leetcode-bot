@@ -12,7 +12,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 intents = discord.Intents.default()
 intents.members = True
 
-bot = commands.Bot(command_prefix='!', intent=intents)
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 GENERAL_CHANNEL = 1007826049347891201
 LEETCODE_CHANNEL = 1008072276396216342
