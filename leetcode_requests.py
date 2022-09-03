@@ -32,12 +32,12 @@ QOTD_QUERY = """query questionOfToday {
 
 def get_leetcode_daily():
     try:
-        get_request = requests.get(LEETCODE_ENDPOINT, json={"query": QOTD_QUERY})
-        if get_request.status_code == 200:
+        post_request = requests.post(LEETCODE_ENDPOINT, json={"query": QOTD_QUERY})
+        if post_request.status_code == 200:
             # whole response body
             #print(json.dumps(get_request.json(), indent=2))
 
-            problem_url = get_request.json().get("data").get("activeDailyCodingChallengeQuestion").get("link")
+            problem_url = post_request.json().get("data").get("activeDailyCodingChallengeQuestion").get("link")
             qotd_link = LEETCODE_URL + problem_url
             return qotd_link
 
