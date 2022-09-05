@@ -41,6 +41,22 @@ RANDOM_QUESTION_VARIABLES = """{
   "filters": {}
 }"""
 
+RANDOM_QUESTION_DIFFICULTY_VARIABLES = {
+  "categorySlug": "",
+  "filters": {
+    "difficulty": ""
+  }
+}
+
+RANDOM_QUESTION_TAG_VARIABLES = {
+  "categorySlug": "",
+  "filters": {
+    "tags": [
+      ""
+    ]
+  }
+}   
+
 def get_leetcode_daily():
     try:
         post_request = requests.post(LEETCODE_ENDPOINT, json={"query": QOTD_QUERY})
@@ -66,10 +82,28 @@ def get_random_question():
     except HTTPError as e:
         print(e.read().decode())
 
-# def get_random_easy_question():
+def get_random_difficulty(difficulty):
+    try:
+        variables = RANDOM_QUESTION_DIFFICULTY_VARIABLES
+        variables["filters"]["difficulty"] = difficulty
+        post_request = requests.post(LEETCODE_ENDPOINT, json={"query": RANDOM_QUESTION_QUERY, "variables" : variables})
+        if post_request.status_code == 200:
+            problem_url = post_request.json().get("data").get("randomQuestion").get("titleSlug")
+            random_question_url = LEETCODE_URL + "/problems/" + problem_url
+            return random_question_url
 
-# def get_random_medium_question():
+    except HTTPError as e:
+        print(e.read().decode())
 
-# def get_random_hard_question():
+def get_random_tag(tag):
+    try:
+        variables = RANDOM_QUESTION_TAG_VARIABLES
+        variables["filters"]["tags"][0] = tag
+        post_request = requests.post(LEETCODE_ENDPOINT, json={"query": RANDOM_QUESTION_QUERY, "variables" : variables})
+        if post_request.status_code == 200:
+            problem_url = post_request.json().get("data").get("randomQuestion").get("titleSlug")
+            random_question_url = LEETCODE_URL + "/problems/" + problem_url
+            return random_question_url
 
-# def get_random_
+    except HTTPError as e:
+        print(e.read().decode())
