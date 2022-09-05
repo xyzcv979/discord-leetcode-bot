@@ -30,6 +30,17 @@ QOTD_QUERY = """query questionOfToday {
     }
 }"""
 
+RANDOM_QUESTION_QUERY = """query randomQuestion($categorySlug: String, $filters: QuestionListFilterInput) {
+  randomQuestion(categorySlug: $categorySlug, filters: $filters) {
+    titleSlug
+  }
+}"""
+
+RANDOM_QUESTION_VARIABLES = """{
+  "categorySlug": "",
+  "filters": {}
+}"""
+
 def get_leetcode_daily():
     try:
         post_request = requests.post(LEETCODE_ENDPOINT, json={"query": QOTD_QUERY})
@@ -43,3 +54,22 @@ def get_leetcode_daily():
 
     except HTTPError as e:
         print(e.read().decode())
+
+def get_random_question():
+    try:
+        post_request = requests.post(LEETCODE_ENDPOINT, json={"query": RANDOM_QUESTION_QUERY, "variables" : RANDOM_QUESTION_VARIABLES})
+        if post_request.status_code == 200:
+            problem_url = post_request.json().get("data").get("randomQuestion").get("titleSlug")
+            random_question_url = LEETCODE_URL + "/problems/" + problem_url
+            return random_question_url
+
+    except HTTPError as e:
+        print(e.read().decode())
+
+# def get_random_easy_question():
+
+# def get_random_medium_question():
+
+# def get_random_hard_question():
+
+# def get_random_
