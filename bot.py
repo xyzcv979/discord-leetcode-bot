@@ -3,7 +3,7 @@ from enum import IntEnum
 import discord
 from dotenv import load_dotenv
 import os
-from leetcode_requests import get_leetcode_daily
+from leetcode_requests import *
 
 from discord.ext import commands
 
@@ -36,5 +36,9 @@ async def on_member_join(member):
 @bot.command(name='daily', help='Responds with the daily leetcode problem')
 async def leetcode_daily(ctx): #ctx = context which holds channel/guild info
     await ctx.send(get_leetcode_daily())
+
+@bot.command(name='random', help='Responds with random leetcode problem')
+async def leetcode_random(ctx):
+    await ctx.send(get_random_question())
 
 bot.run(TOKEN)
