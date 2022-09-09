@@ -36,7 +36,7 @@ async def on_member_join(member):
     channel = bot.get_channel(GENERAL_CHANNEL) # general channel ID
     await channel.send(f'Hi {member.name}, welcome to {member.guild.name}')
 
-daily_time = datetime.time(hour=14, minute=0, second=0)
+daily_time = datetime.time(hour=10, minute=0, second=0)
 @tasks.loop(time=daily_time)
 async def run_job():
     await bot.wait_until_ready()
