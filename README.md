@@ -2,3 +2,4 @@
 Discord Leetcode bot
 
 ![](https://github.com/xyzcv979/discord-leetcode-bot/blob/main/leetcode_bot.png)
+![](https://github.com/xyzcv979/discord-leetcode-bot/blob/main/daily_problem.png)
