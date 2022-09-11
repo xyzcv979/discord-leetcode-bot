@@ -1,6 +1,4 @@
 # discord-leetcode-bot
-Discord Leetcode bot
-
 Request and receives Leetcode.com data via GraphQL since Leetcode doesn't have an official API
 
 Daily Leetcode problem scheduled everyday
