@@ -19,6 +19,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 GENERAL_CHANNEL = 1141174106046349426
 LEETCODE_CHANNEL = 1141174106046349427
+DAILY_TIME = datetime.time(hour=14, minute=0, second=0)
 
 @bot.event # registers event
 async def on_ready(): # once bot is online
@@ -36,8 +37,7 @@ async def on_member_join(member):
     channel = bot.get_channel(GENERAL_CHANNEL) # general channel ID
     await channel.send(f'Hi {member.name}, welcome to {member.guild.name}')
 
-daily_time = datetime.time(hour=14, minute=0, second=0)
-@tasks.loop(time=daily_time)
+@tasks.loop(time=DAILY_TIME)
 async def run_job():
     await bot.wait_until_ready()
     daily_url = get_leetcode_daily()
