@@ -17,8 +17,8 @@ intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-GENERAL_CHANNEL = 1007826049347891201
-LEETCODE_CHANNEL = 1008072276396216342
+GENERAL_CHANNEL = 1141174106046349426
+LEETCODE_CHANNEL = 1141174106046349427
 
 @bot.event # registers event
 async def on_ready(): # once bot is online
