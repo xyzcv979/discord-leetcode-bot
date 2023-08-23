@@ -42,12 +42,13 @@ async def run_job():
     await bot.wait_until_ready()
     daily_url = get_leetcode_daily()
     channel = bot.get_channel(LEETCODE_CHANNEL)
-    await channel.send(f'Daily problem: {daily_url}')
+    await channel.send(f'Daily problem: <{daily_url}>')
 
 
 @bot.command(name='daily', help='Responds with the daily leetcode problem')
 async def leetcode_daily(ctx): #ctx = context which holds channel/guild info
-    await ctx.send(get_leetcode_daily())
+    get_url = get_leetcode_daily()
+    await ctx.send(f'Daily problem: <{get_url}>')
 
 @bot.command(name='random', help='random leetcode problem')
 async def leetcode_random(ctx):
